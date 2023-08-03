@@ -27,13 +27,14 @@
 
 
 #### SETTINGS ####
-source_code_base_folder="../odoo/" # The folder to house all the source codes
+source_code_base_folder="../../odoo/" # The folder to house all the source codes
 community_repo_link="https://github.com/odoo/odoo.git" # ssh or https
 community_folder_name="odoo" # The name of the folder that houses all the community version code
 enterprise_repo_link="git@github.com:odoo/enterprise.git" # ssh only
 enterprise_folder_name="enterprise" # The name of the folder that houses all the enterprise version code
 terminal_program="terminator -e" # Prefered terminal command to open multiple windows and executes the cloning
 
+additional_git_flags="--depth=1"
 
 declare -A odoo_repo_branches_folders=(
 #   branch  | folder
@@ -54,7 +55,7 @@ cd $source_code_base_folder
 # <command>
 function command_in_new_window {
     command2execute="$*"
-    eval "$terminal_program 'echo "$command2execute" && "$command2execute" & "read -r -n1 key"'"
+    eval "$terminal_program 'echo "$command2execute" && "$command2execute" && echo "[DONE] Press any key to exit" && "read -r -n1 key"'"
 }
 
 # Function to pull the source code from a link
@@ -64,7 +65,7 @@ function git_clone {
     __source_link=$2
     __destination_folder=$3
 
-    command="git clone -b '$__branch_name' $__source_link $__destination_folder"
+    command="git clone $additional_git_flags -b '$__branch_name' $__source_link $__destination_folder"
     command_in_new_window $command
 }
 
@@ -97,4 +98,5 @@ done
 
 # Wait for all the pulling to complete
 wait
+echo "[DONE] All child processes should be done"
 
