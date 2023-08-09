@@ -30,7 +30,7 @@
 source_code_base_folder="../../odoo/" # The folder to house all the source codes
 community_repo_link="https://github.com/odoo/odoo.git" # ssh or https
 community_folder_name="odoo" # The name of the folder that houses all the community version code
-enterprise_repo_link="git@github.com:odoo/enterprise.git" # ssh only
+enterprise_repo_link="git@cdgithub.com:odoo/enterprise.git" # ssh only
 enterprise_folder_name="enterprise" # The name of the folder that houses all the enterprise version code
 terminal_program="terminator -e" # Prefered terminal command to open multiple windows and executes the cloning
 
